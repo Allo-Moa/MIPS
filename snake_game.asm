@@ -1,19 +1,19 @@
 #
-# Ces fonctions s'occupent de l'affichage et des entrées clavier.
+# Ces fonctions s'occupent de l'affichage et des entrÃ©es clavier.
 # Il n'est pas obligatoire de comprendre ce qu'elles font.
 
 .data
 
-# Tampon d'affichage du jeu 256*256 de manière linéaire.
+# Tampon d'affichage du jeu 256*256 de maniÃ¨re linÃ©aire.
 
 frameBuffer: .word 0 : 1024  # Frame buffer
 
 # Code couleur pour l'affichage
-# Codage des couleurs 0xwwxxyyzz où
+# Codage des couleurs 0xwwxxyyzz oÃ¹
 #   ww = 00
-#   00 <= xx <= ff est la couleur rouge en hexadécimal
-#   00 <= yy <= ff est la couleur verte en hexadécimal
-#   00 <= zz <= ff est la couleur bleue en hexadécimal
+#   00 <= xx <= ff est la couleur rouge en hexadÃ©cimal
+#   00 <= yy <= ff est la couleur verte en hexadÃ©cimal
+#   00 <= zz <= ff est la couleur bleue en hexadÃ©cimal
 
 colors: .word 0x00000000, 0x00ff0000, 0xff00ff00, 0x00396239, 0x00ff00ff
 .eqv black 0
@@ -30,7 +30,7 @@ colors2: .word 0x00ffff00, 0x003399ff, 0x00ff0000, 0x0000ffff, 0x00f8000, 0x0039
 .eqv orange 16
 .eqv greenV3 20
 .eqv jaunevert 24
-# Dernière position connue de la queue du serpent.
+# DerniÃ¨re position connue de la queue du serpent.
 
 lastSnakePiece: .word 0, 0
 
@@ -39,7 +39,7 @@ lastSnakePiece: .word 0, 0
 j main
 
 ############################# printColorAtPosition #############################
-# Paramètres: $a0 La valeur de la couleur
+# ParamÃ¨tres: $a0 La valeur de la couleur
 #             $a1 La position en X
 #             $a2 La position en Y
 # Retour: Aucun
@@ -55,9 +55,9 @@ sw $a0 frameBuffer($t0)
 jr $ra
 
 ################################ resetAffichage ################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
-# Effet de bord: Réinitialise tout l'affichage avec la couleur noir
+# Effet de bord: RÃ©initialise tout l'affichage avec la couleur noir
 ################################################################################
 
 resetAffichage:
@@ -76,10 +76,10 @@ endRALoop2:
 jr $ra
 
 ################################## printSnake ##################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
 # Effet de bord: Change la couleur de l'affichage aux emplacement ou se
-#                trouve le serpent et sauvegarde la dernière position connue de
+#                trouve le serpent et sauvegarde la derniÃ¨re position connue de
 #                la queue du serpent.
 ################################################################################
 
@@ -132,7 +132,7 @@ addu $sp $sp 12
 jr $ra
 
 ################################ printObstacles ################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
 # Effet de bord: Change la couleur de l'affichage aux emplacement des obstacles.
 ################################################################################
@@ -164,9 +164,9 @@ addu $sp $sp 12
 jr $ra
 
 ################################## printCandy ##################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
-# Effet de bord: Change la couleur de l'affichage �  l'emplacement du bonbon.
+# Effet de bord: Change la couleur de l'affichage Ã  l'emplacement du bonbon.
 ################################################################################
 
 printCandy:
@@ -197,9 +197,9 @@ addu $sp $sp 4
 jr $ra
 
 ################################## printGame ###################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
-# Effet de bord: Effectue l'affichage de la totalité des éléments du jeu.
+# Effet de bord: Effectue l'affichage de la totalitÃ© des Ã©lÃ©ments du jeu.
 ################################################################################
 
 printGame:
@@ -216,7 +216,7 @@ addu $sp $sp 4
 jr $ra
 
 ############################## getRandomExcluding ##############################
-# Paramètres: $a0 Un entier x | 0 <= x < tailleGrille
+# ParamÃ¨tres: $a0 Un entier x | 0 <= x < tailleGrille
 # Retour: $v0 Un entier y | 0 <= y < tailleGrille, y != x
 ################################################################################
 
@@ -230,9 +230,9 @@ move $v0 $a0
 jr $ra
 
 ########################### newRandomObjectPosition ############################
-# Description: Renvoie une position aléatoire sur un emplacement non utilisé
+# Description: Renvoie une position alÃ©atoire sur un emplacement non utilisÃ©
 #              qui ne se trouve pas devant le serpent.
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: $v0 Position X du nouvel objet
 #         $v1 Position Y du nouvel objet
 ################################################################################
@@ -305,7 +305,7 @@ addu $sp $sp 4
 j newRandomObjectPosition
 
 ################################# getInputVal ##################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: $v0 La valeur 0 (haut), 1 (droite), 2 (bas), 3 (gauche), 4 erreur
 ################################################################################
 
@@ -341,7 +341,7 @@ GIend:
 jr $ra
 
 ################################ sleepMillisec #################################
-# Paramètres: $a0 Le temps en milli-secondes qu'il faut passer dans cette
+# ParamÃ¨tres: $a0 Le temps en milli-secondes qu'il faut passer dans cette
 #             fonction (approximatif)
 # Retour: Aucun
 ################################################################################
@@ -363,7 +363,7 @@ jr $ra
 
 ##################################### main #####################################
 # Description: Boucle principal du jeu
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
 ################################################################################
 
@@ -400,7 +400,7 @@ syscall
 #                                Partie Projet                                 #
 ################################################################################
 
-# À vous de jouer !
+# Ã€ vous de jouer !
 
 .data
 
@@ -410,32 +410,32 @@ message : .asciiz "\n Peut mieux faire!"
 
 tailleGrille:  .word 16        # Nombre de case du jeu dans une dimension.
 
-# La tête du serpent se trouve �  (snakePosX[0], snakePosY[0]) et la queue � 
+# La tÃªte du serpent se trouve Ã  (snakePosX[0], snakePosY[0]) et la queue Ã 
 # (snakePosX[tailleSnake - 1], snakePosY[tailleSnake - 1])
 tailleSnake:   .word 2        # Taille actuelle du serpent.
-snakePosX:     .word 0 : 1024  # Coordonnées X du serpent ordonné de la tête �  la queue.
-snakePosY:     .word 0 : 1024  # Coordonnées Y du serpent ordonné de la t.
+snakePosX:     .word 0 : 1024  # CoordonnÃ©es X du serpent ordonnÃ© de la tÃªte Ã  la queue.
+snakePosY:     .word 0 : 1024  # CoordonnÃ©es Y du serpent ordonnÃ© de la t.
 
-# Les directions sont représentés sous forme d'entier allant de 0 �  3:
+# Les directions sont reprÃ©sentÃ©s sous forme d'entier allant de 0 Ã  3:
 snakeDir:      .word 1         # Direction du serpent: 0 (haut), 1 (droite)
                                #                       2 (bas), 3 (gauche)
-numObstacles:  .word 0         # Nombre actuel d'obstacle présent dans le jeu.
-obstaclesPosX: .word 0 : 1024  # Coordonnées X des obstacles
-obstaclesPosY: .word 0 : 1024  # Coordonnées Y des obstacles
+numObstacles:  .word 0         # Nombre actuel d'obstacle prÃ©sent dans le jeu.
+obstaclesPosX: .word 0 : 1024  # CoordonnÃ©es X des obstacles
+obstaclesPosY: .word 0 : 1024  # CoordonnÃ©es Y des obstacles
 candy:         .word 0, 0      # Position du bonbon (X,Y)
 scoreJeu:      .word 0         # Score obtenu par le joueur
 
 .text
 
 ################################# majDirection #################################
-# Paramètres: $a0 La nouvelle position demandée par l'utilisateur. La valeur
-#                 étant le retour de la fonction getInputVal.
+# ParamÃ¨tres: $a0 La nouvelle position demandÃ©e par l'utilisateur. La valeur
+#                 Ã©tant le retour de la fonction getInputVal.
 # Retour: Aucun
-# Effet de bord: La direction du serpent �  été mise �  jour.
-# Post-condition: La valeur du serpent reste intacte si une commande illégale
-#                 est demandée, i.e. le serpent ne peut pas faire de demi-tour
-#                 en un unique tour de jeu. Cela s'apparente �  du cannibalisme
-#                 et �  été proscrit par la loi dans les sociétés reptiliennes.
+# Effet de bord: La direction du serpent Ã  Ã©tÃ© mise Ã  jour.
+# Post-condition: La valeur du serpent reste intacte si une commande illÃ©gale
+#                 est demandÃ©e, i.e. le serpent ne peut pas faire de demi-tour
+#                 en un unique tour de jeu. Cela s'apparente Ã  du cannibalisme
+#                 et Ã  Ã©tÃ© proscrit par la loi dans les sociÃ©tÃ©s reptiliennes.
 ################################################################################
 
 majDirection:
@@ -445,17 +445,17 @@ sw $t2 8($sp)
 sw $a1 4($sp)
 sw $ra ($sp)
 
-# En haut, ... en bas, ... �  gauche, ... �  droite, ... ces soirées l�  ... 
+# En haut, ... en bas, ... Ã  gauche, ... Ã  droite, ... ces soirÃ©es lÃ  ... 
 
-# Teste si le déplacement entré est illégale
+# Teste si le dÃ©placement entrÃ© est illÃ©gale
 lw $t0 snakeDir
 lw $t1 tailleSnake
 subi $t1 $t1 1
 li $t2 1
 
-beq $t1 $t2 Mouvement 	    # Si la taille du serpent est de 1, le déplacement ne peut pas être illégale
+beq $t1 $t2 Mouvement 	    # Si la taille du serpent est de 1, le dÃ©placement ne peut pas Ãªtre illÃ©gale
 
-li $t1 1		    # sinon on se déplace dans une fonction où le demi-tour n'est pas possible (déterminée par la valeur de snakeDir)
+li $t1 1		    # sinon on se dÃ©place dans une fonction oÃ¹ le demi-tour n'est pas possible (dÃ©terminÃ©e par la valeur de snakeDir)
 beq $t0 $t1 testMouvementG
 li $t1 3
 beq $t0 $t1 testMouvementD
@@ -554,12 +554,12 @@ addu $sp $sp 16
 jr $ra
 
 ############################### updateGameStatus ###############################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
-# Effet de bord: L'état du jeu est mis �  jour d'un pas de temps. Il faut donc :
+# Effet de bord: L'Ã©tat du jeu est mis Ã  jour d'un pas de temps. Il faut donc :
 #                  - Faire bouger le serpent
-#                  - Tester si le serpent �  manger le bonbon
-#                    - Si oui déplacer le bonbon et ajouter un nouvel obstacle
+#                  - Tester si le serpent Ã  manger le bonbon
+#                    - Si oui dÃ©placer le bonbon et ajouter un nouvel obstacle
 ################################################################################
 
 updateGameStatus:
@@ -637,10 +637,10 @@ add $t5 $t5 $t3
 
 move $t0 $v0
 move $t1 $v1
-sw $t0 0($t4) # on sauvegarde les valeurs aléatoires données par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
+sw $t0 0($t4) # on sauvegarde les valeurs alÃ©atoires donnÃ©es par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
 sw $t1 0($t5)
 
-#incrémentation du nombre d'obstacles
+#incrÃ©mentation du nombre d'obstacles
 addi $t6 $t6 1
 sw $t6 numObstacles
 
@@ -697,10 +697,10 @@ add $t5 $t5 $t3
 
 move $t0 $v0
 move $t1 $v1
-sw $t0 0($t4) # on sauvegarde les valeurs aléatoires données par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
+sw $t0 0($t4) # on sauvegarde les valeurs alÃ©atoires donnÃ©es par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
 sw $t1 0($t5)
 
-#incrémentation du nombre d'obstacles
+#incrÃ©mentation du nombre d'obstacles
 addi $t6 $t6 1
 sw $t6 numObstacles
 
@@ -757,10 +757,10 @@ add $t5 $t5 $t3
 
 move $t0 $v0
 move $t1 $v1
-sw $t0 0($t4) # on sauvegarde les valeurs aléatoires données par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
+sw $t0 0($t4) # on sauvegarde les valeurs alÃ©atoires donnÃ©es par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
 sw $t1 0($t5)
 
-#incrémentation du nombre d'obstacles
+#incrÃ©mentation du nombre d'obstacles
 addi $t6 $t6 1
 sw $t6 numObstacles
 
@@ -817,10 +817,10 @@ add $t5 $t5 $t3
 
 move $t0 $v0
 move $t1 $v1
-sw $t0 0($t4) # on sauvegarde les valeurs aléatoires données par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
+sw $t0 0($t4) # on sauvegarde les valeurs alÃ©atoires donnÃ©es par la fonction newRandomObjectPosition dans l'adresse du nouveau obstacle
 sw $t1 0($t5)
 
-#incrémentation du nombre d'obstacles
+#incrÃ©mentation du nombre d'obstacles
 addi $t6 $t6 1
 sw $t6 numObstacles
 
@@ -848,13 +848,13 @@ mulu $t1 $t4 4          # On calcul l'offset de l'entier suivant le tableau
 addu $t0 $t3 $t0
 addu $t1 $t2 $t1            # On calcul son adresse
 loop_Decalage:
-beq $t0 $t3 fin_Decalage    # Si on se trouve sur la premiÃ¨re case du tableau on Ã�  fini
-lw $s1 -4($t0)              # Sinon on charge le contenu de la case précédente
+beq $t0 $t3 fin_Decalage    # Si on se trouve sur la premiÃƒÂ¨re case du tableau on ÃƒÂ  fini
+lw $s1 -4($t0)              # Sinon on charge le contenu de la case prÃ©cÃ©dente
 sw $s1 0($t0)  
 lw $s1 -4($t1)
 sw $s1 0($t1)
-subu $t1 $t1 4             # Et on l'écrit dans la case courante
-subu $t0 $t0 4              # On se décale sur la case précédente
+subu $t1 $t1 4             # Et on l'Ã©crit dans la case courante
+subu $t0 $t0 4              # On se dÃ©cale sur la case prÃ©cÃ©dente
 j loop_Decalage     
 
 
@@ -903,7 +903,7 @@ addu $sp $sp 32
 jr $ra
 
 ############################### conditionFinJeu ################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: $v0 La valeur 0 si le jeu doit continuer ou toute autre valeur sinon.
 ################################################################################
 
@@ -911,7 +911,7 @@ conditionFinJeu:
 
 # Aide: Remplacer cette instruction permet d'avancer dans le projet.
 
-# Si la tête du serpent rencontre un obstacle, le jeu s'arrête
+# Si la tÃªte du serpent rencontre un obstacle, le jeu s'arrÃªte
 percuteObstacle:
 lw $t0 tailleSnake
 li $t1 1
@@ -921,17 +921,17 @@ lw $t0 numObstacles
 li $t1 0
 la $t2 obstaclesPosX	# On charge l'adresse du premier obstacle
 la $t3 obstaclesPosY
-lw $t4 snakePosX	# On charge le contenu de la tête du serpent
+lw $t4 snakePosX	# On charge le contenu de la tÃªte du serpent
 lw $t5 snakePosY
 lw $t6 tailleSnake
 
 
 boucleNumObstacles:
-beq $t0 $t1 Bordure	      # Quand on a testé tous les obstacles, on se déplace dans la prochaine fonction qui vérifie si le jeu s'arrête
+beq $t0 $t1 Bordure	      # Quand on a testÃ© tous les obstacles, on se dÃ©place dans la prochaine fonction qui vÃ©rifie si le jeu s'arrÃªte
 mulu $t6 $t1 4
 add $t6 $t6 $t2
 lw $t8 0($t6)
-beq $t4 $t8 testObstaclesY    # Si l'obstacle est a la même position que la tete du serpent en X
+beq $t4 $t8 testObstaclesY    # Si l'obstacle est a la mÃªme position que la tete du serpent en X
 addi $t1 $t1 1
 j boucleNumObstacles
 
@@ -939,12 +939,12 @@ testObstaclesY:		      # on teste si l'obstacle est a la meme position que la te
 mulu $t7 $t1 4
 add $t7 $t7 $t3
 lw $t9 0($t7)
-beq $t5 $t9 gameOver	      # dans ce cas l�  le jeu s'arrête
+beq $t5 $t9 gameOver	      # dans ce cas lÃ  le jeu s'arrÃªte
 addi $t1 $t1 1
 j boucleNumObstacles	      # sinon on retourne dans la boucle pour tester les prochains obstacles
 
 
-# Si la tete du serpent depasse la bordure de la grille, le jeu s'arrête
+# Si la tete du serpent depasse la bordure de la grille, le jeu s'arrÃªte
 Bordure:		    
 lw $t0 tailleGrille
 beq $t4 -1 gameOver
@@ -955,7 +955,7 @@ beq $t5 $t0 gameOver
 j testMangeLuiMemeX
 
 
-# Si la tête du serpent touche sa queue, le jeu s'arrête
+# Si la tÃªte du serpent touche sa queue, le jeu s'arrÃªte
 testMangeLuiMemeX:
  
  
@@ -965,7 +965,7 @@ ble $t4 2 finConditionJeu
 la $t3 snakePosX
 la $t2 snakePosY 
 
-#corps de la fonction: A compléter
+#corps de la fonction: A complÃ©ter
 mulu $t0 $t4 4    
 mulu $t1 $t4 4          # On calcul l'offset de l'entier suivant le tableau
 addu $t0 $t3 $t0
@@ -973,11 +973,11 @@ addu $t1 $t2 $t1
 addu $t6 $t3 4
 
 loop_Decalage2:
-beq $t0 $t6  fin_Decalage2    # Si on se trouve sur la première case du tableau on a fini
+beq $t0 $t6  fin_Decalage2    # Si on se trouve sur la premiÃ¨re case du tableau on a fini
 lw $s1 0($t3)
-lw $s0 0($t0)              # Sinon on charge le contenu de la case précédente
+lw $s0 0($t0)              # Sinon on charge le contenu de la case prÃ©cÃ©dente
 beq $s1 $s0 egalaX
-subu $t1 $t1 4             # Et on l'écrit dans la case courante
+subu $t1 $t1 4             # Et on l'Ã©crit dans la case courante
 subu $t0 $t0 4   
 j loop_Decalage2
 egalaX:
@@ -998,10 +998,10 @@ jr $ra
 
 
 ############################### affichageFinJeu ################################
-# Paramètres: Aucun
+# ParamÃ¨tres: Aucun
 # Retour: Aucun
 # Effet de bord: Affiche le score du joueur dans le terminal suivi d'un petit
-#                mot gentil (Exemple : «Quelle pitoyable prestation !»).
+#                mot gentil (Exemple : Â«Quelle pitoyable prestation !Â»).
 # Bonus: Afficher le score en surimpression du jeu.
 ################################################################################
 
@@ -1011,7 +1011,7 @@ la $a0 score
 li $v0 4
 syscall
 
-lw $a0 tailleSnake # Le score commence �  1
+lw $a0 tailleSnake # Le score commence Ã  1
 subi $a0 $a0 1
 li $v0 1
 syscall
